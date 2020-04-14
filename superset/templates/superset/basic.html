@@ -37,8 +37,8 @@
     {% block head_css %}
       {% for favicon in favicons %}
         <link 
-          rel="{{favicon.rel if favicon.rel else "icon"}}"
-          type="{{favicon.type if favicon.type else "image/png"}}" 
+          rel="{{favicon.rel if favicon.rel else 'icon'}}"
+          type="{{favicon.type if favicon.type else 'image/png'}}"
           {% if favicon.sizes %}sizes={{favicon.sizes}}{% endif %} 
           href="{{favicon.href}}"
         >
