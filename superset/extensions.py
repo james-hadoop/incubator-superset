@@ -124,7 +124,10 @@ class UIManifestProcessor:
             self.parse_manifest_json()
         return self.manifest.get(bundle, {}).get(asset_type, [])
 
-
+"""
+    create by James on 2020-04-14
+    扩展flask功能
+"""
 APP_DIR = os.path.dirname(__file__)
 appbuilder = AppBuilder(update_perms=False)
 cache_manager = CacheManager()
