@@ -2689,8 +2689,13 @@ class Superset(BaseSupersetView):
             500,
         )
 
+    """
+        create by James on 2020-04-14
+        欢迎页面
+    """
     @expose("/welcome")
     def welcome(self):
+        logger.info("james welcomes you~")
         """Personalized welcome page"""
         if not g.user or not g.user.get_id():
             return redirect(appbuilder.get_url_for_login)
