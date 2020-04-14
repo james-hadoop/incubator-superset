@@ -26,6 +26,10 @@ from flask_compress import Compress
 from flask_wtf import CSRFProtect
 
 from superset.connectors.connector_registry import ConnectorRegistry
+"""
+    create by James on 2020-04-14
+    superset app 扩展 flask app
+"""
 from superset.extensions import (
     _event_logger,
     APP_DIR,
@@ -46,6 +50,11 @@ from superset.utils.log import DBEventLogger, get_event_logger_from_cfg_value
 
 logger = logging.getLogger(__name__)
 
+"""
+    create by James on 2020-04-14
+    创建flask app
+"""
+
 
 def create_app():
     app = Flask(__name__)
@@ -55,7 +64,15 @@ def create_app():
         config_module = os.environ.get("SUPERSET_CONFIG", "superset.config")
         app.config.from_object(config_module)
 
+        """
+            create by James on 2020-04-14
+            导入superset配置
+        """
         app_initializer = app.config.get("APP_INITIALIZER", SupersetAppInitializer)(app)
+        """
+            create by James on 2020-04-14
+            启动superset app
+        """
         app_initializer.init_app()
 
         return app
@@ -539,10 +556,10 @@ class SupersetAppInitializer:
         jinja_context_manager.init_app(self.flask_app)
 
     def configure_middlewares(self):
-        if self.config["ENABLE_CORS"]:
-            from flask_cors import CORS
-
-            CORS(self.flask_app, **self.config["CORS_OPTIONS"])
+        # if self.config["ENABLE_CORS"]:
+        #     from flask_cors import CORS
+        #
+        #     CORS(self.flask_app, **self.config["CORS_OPTIONS"])
 
         if self.config["ENABLE_PROXY_FIX"]:
             from werkzeug.middleware.proxy_fix import ProxyFix

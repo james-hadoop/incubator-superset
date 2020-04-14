@@ -49,6 +49,12 @@ def normalize_token(token_name: str) -> str:
     return token_name.replace("_", "-")
 
 
+"""
+    create by James on 2020-04-14
+    通过命令行启动superset
+"""
+
+
 @click.group(
     cls=FlaskGroup,
     create_app=create_app,
@@ -62,7 +68,10 @@ def superset():
     def make_shell_context():  # pylint: disable=unused-variable
         return dict(app=app, db=db)
 
-
+"""
+    create by James on 2020-04-14
+    cmd: superset init
+"""
 @superset.command()
 @with_appcontext
 def init():
@@ -71,7 +80,10 @@ def init():
     appbuilder.add_permissions(update_perms=True)
     security_manager.sync_role_definitions()
 
-
+"""
+    create by James on 2020-04-14
+    cmd: superset version
+"""
 @superset.command()
 @with_appcontext
 @click.option("--verbose", "-v", is_flag=True, help="Show extra information")
@@ -88,6 +100,12 @@ def version(verbose):
     if verbose:
         print("[DB] : " + "{}".format(db.engine))
     print(Style.RESET_ALL)
+
+
+"""
+    create by James on 2020-04-14
+    superset命令行，载入用例
+"""
 
 
 def load_examples_run(load_test_data, only_metadata=False, force=False):
@@ -151,6 +169,10 @@ def load_examples_run(load_test_data, only_metadata=False, force=False):
     examples.load_tabbed_dashboard(only_metadata)
 
 
+"""
+    create by James on 2020-04-14
+    cmd: superset load_examples
+"""
 @with_appcontext
 @superset.command()
 @click.option("--load-test-data", "-t", is_flag=True, help="Load additional test data")
@@ -180,7 +202,7 @@ def set_database_uri(database_name, uri):
     "--datasource",
     "-d",
     help="Specify which datasource name to load, if "
-    "omitted, all datasources will be refreshed",
+         "omitted, all datasources will be refreshed",
 )
 @click.option(
     "--merge",
@@ -211,7 +233,7 @@ def refresh_druid(datasource, merge):
     "--path",
     "-p",
     help="Path to a single JSON file or path containing multiple JSON "
-    "files to import (*.json)",
+         "files to import (*.json)",
 )
 @click.option(
     "--recursive",
@@ -277,7 +299,7 @@ def export_dashboards(print_stdout, dashboard_file):
     "--path",
     "-p",
     help="Path to a single YAML file or path containing multiple YAML "
-    "files to import (*.yaml or *.yml)",
+         "files to import (*.yaml or *.yml)",
 )
 @click.option(
     "--sync",
@@ -285,8 +307,8 @@ def export_dashboards(print_stdout, dashboard_file):
     "sync",
     default="",
     help="comma seperated list of element types to synchronize "
-    'e.g. "metrics,columns" deletes metrics and columns in the DB '
-    "that are not specified in the YAML file",
+         'e.g. "metrics,columns" deletes metrics and columns in the DB '
+         "that are not specified in the YAML file",
 )
 @click.option(
     "--recursive",
@@ -345,7 +367,7 @@ def import_datasources(path, sync, recursive):
     help="Include fields containing defaults",
 )
 def export_datasources(
-    print_stdout, datasource_file, back_references, include_defaults
+        print_stdout, datasource_file, back_references, include_defaults
 ):
     """Export datasources to YAML"""
     from superset.utils import dict_import_export

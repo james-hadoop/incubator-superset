@@ -939,7 +939,10 @@ def user_label(user: User) -> Optional[str]:
 
     return None
 
-
+"""
+    create by James on 2020-04-14
+    superset命令行执行"superset load_examples"时，根据配置文件创建数据库表
+"""
 def get_or_create_db(database_name, sqlalchemy_uri, *args, **kwargs):
     from superset import db
     from superset.models import core as models
