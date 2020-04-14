@@ -42,6 +42,10 @@ from superset.typing import CacheConfig
 from superset.utils.log import DBEventLogger
 from superset.utils.logging_configurator import DefaultLoggingConfigurator
 
+"""
+    create by James on 2020-04-14
+    superset配置文件
+"""
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
@@ -135,8 +139,8 @@ SECRET_KEY = (
 )
 
 # The SQLAlchemy connection string.
-SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(DATA_DIR, "superset.db")
-# SQLALCHEMY_DATABASE_URI = 'mysql://myapp@localhost/myapp'
+# SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(DATA_DIR, "james_superset.db")
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://developer:developer@localhost:3306/james_superset'
 # SQLALCHEMY_DATABASE_URI = 'postgresql://root:password@localhost/myapp'
 
 # In order to hook up a custom password store for all SQLACHEMY connections

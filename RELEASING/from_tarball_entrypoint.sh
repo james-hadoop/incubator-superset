@@ -15,6 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+#
+# 初始化superset环境
 set -ex
 
 echo "[WARNING] this entrypoint creates an admin/admin user"
