@@ -132,6 +132,10 @@ class SupersetAppInitializer:
 
         celery_app.Task = AppContextTask
 
+    """
+        create by James on 2020-04-14
+        初始化superset页面
+    """
     def init_views(self) -> None:
         #
         # We're doing local imports, as several of them import
@@ -243,6 +247,10 @@ class SupersetAppInitializer:
             category_icon="fa-table",
         )
         appbuilder.add_separator("Sources")
+        """
+            create by James on 2020-04-14
+            一级菜单：Sources
+        """
         appbuilder.add_view(
             SliceModelView,
             "Charts",
@@ -251,6 +259,10 @@ class SupersetAppInitializer:
             category="",
             category_icon="",
         )
+        """
+            create by James on 2020-04-14
+            一级菜单：Dashboards
+        """
         appbuilder.add_view(
             DashboardModelView,
             "Dashboards",
@@ -259,6 +271,10 @@ class SupersetAppInitializer:
             category="",
             category_icon="",
         )
+        """
+            create by James on 2020-04-14
+            二级菜单：CSS Templates
+        """
         appbuilder.add_view(
             CssTemplateModelView,
             "CSS Templates",
@@ -268,6 +284,10 @@ class SupersetAppInitializer:
             category_label=__("Manage"),
             category_icon="",
         )
+        """
+            create by James on 2020-04-14
+            二级菜单：Queries
+        """
         appbuilder.add_view(
             QueryView,
             "Queries",
@@ -317,6 +337,10 @@ class SupersetAppInitializer:
         #
         # Add links
         #
+        """
+            create by James on 2020-04-14
+            二级菜单
+        """
         appbuilder.add_link(
             "Import Dashboards",
             label=__("Import Dashboards"),
@@ -500,6 +524,10 @@ class SupersetAppInitializer:
 
         self.configure_jinja_context()
 
+        """
+            create by James on 2020-04-14
+            调用init_views()，初始化页面
+        """
         with self.flask_app.app_context():
             self.init_app_in_ctx()
 
@@ -535,6 +563,10 @@ class SupersetAppInitializer:
                  See [4565] in UPDATING.md"""
             )
 
+        """
+            create by James on 2020-04-14
+            appbuilder全局配置
+        """
         appbuilder.indexview = SupersetIndexView
         appbuilder.base_template = "superset/base.html"
         appbuilder.security_manager_class = custom_sm
